@@ -64,8 +64,8 @@ const UserCreate = () => {
 					/>
 				</div>
 
-				<div>
-					<label></label>
+				<div className='mb-3'>
+					<label>Role</label>
 					<select
 						className="form-control"
 						onChange={(e) => setRoleId(e.target.value)}

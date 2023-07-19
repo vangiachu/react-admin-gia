@@ -40,7 +40,7 @@ const Users = () => {
 
 	return (
 		<Wrapper>
-			<div className="pt-3 pb-2 mb-3 borde-bottom">
+			<div className="pt-3 pb-2 mb-3 border-bottom">
 				<Link to="/users/create" className="btn btn-sm btn-outline-secondary">
 					Add
 				</Link>
@@ -49,11 +49,11 @@ const Users = () => {
 				<table className="table table-striped table-sm">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Role</th>
-							<th scope="col">Action</th>
+							<th>#</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Role</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>

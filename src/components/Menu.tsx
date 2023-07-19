@@ -9,15 +9,21 @@ const Menu = () => {
 			<div className="position-sticky pt-3">
 				<ul className="nav flex-column">
 					<li className="nav-item">
-						<NavLink to={'/'} className="nav-link active">
+						<NavLink to={'/'} className="nav-link">
 							Dashboard
 						</NavLink>
 					</li>
 
 					<li className="nav-item">
-						<Link to={'/users'} className="nav-link active">
+						<NavLink to={'/users'} className="nav-link">
 							Users
-						</Link>
+						</NavLink>
+					</li>
+
+					<li className="nav-item">
+						<NavLink to={'/roles'} className="nav-link">
+							Roles
+						</NavLink>
 					</li>
 				</ul>
 			</div>

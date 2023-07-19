@@ -74,11 +74,11 @@ const UserEdit = (props: any) => {
 					/>
 				</div>
 
-				<div>
-					<label></label>
+				<div className='mb-3'>
+					<label>Role</label>
 					<select
 						className="form-control"
-						defaultValue={role_id}
+						value={role_id}
 						onChange={(e) => setRoleId(e.target.value)}
 					>
 						{roles.map((r: Role) => {
