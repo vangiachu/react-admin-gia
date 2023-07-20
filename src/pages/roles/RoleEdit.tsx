@@ -2,19 +2,26 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import Wrapper from '../../components/Wrapper';
 import { Permission } from '../../models/permission';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
-const RoleCreate = () => {
+const RoleEdit = (props: any) => {
 	const [permissions, setPermissions] = useState([]);
 	const [selected, setSelected] = useState([] as number[]);
 	const [name, setName] = useState('');
 	const [navigate, setNavigate] = useState(false);
 
+	const { id } = useParams();
+
 	useEffect(() => {
 		(async () => {
-			const { data } = await axios.get('permissions');
+			const response = await axios.get('permissions');
 
-			setPermissions(data);
+			setPermissions(response.data);
+
+			const { data } = await axios.get(`roles/${id}`);
+
+			setName(data.name);
+			setSelected(data.permissions.map((p: Permission) => p.id));
 		})();
 	}, []);
 
@@ -30,7 +37,7 @@ const RoleCreate = () => {
 	const submit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		await axios.post('roles', {
+		await axios.put(`roles/${id}`, {
 			name,
 			permissions: selected,
 		});
@@ -50,6 +57,7 @@ const RoleCreate = () => {
 					<div className="col-sm-10">
 						<input
 							className="form-control"
+							defaultValue={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
 					</div>
@@ -65,6 +73,7 @@ const RoleCreate = () => {
 										className="form-check-input"
 										type="checkbox"
 										value={p.id}
+										checked={selected.some((s) => s === p.id)}
 										onChange={() => check(p.id)}
 									/>
 									<label className="form-check-label">{p.name}</label>
@@ -79,4 +88,4 @@ const RoleCreate = () => {
 	);
 };
 
-export default RoleCreate;
+export default RoleEdit;

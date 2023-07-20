@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import Wrapper from '../../components/Wrapper';
 import axios from 'axios';
 import { Role } from '../../models/role';
@@ -64,7 +64,7 @@ const UserCreate = () => {
 					/>
 				</div>
 
-				<div className='mb-3'>
+				<div className="mb-3">
 					<label>Role</label>
 					<select
 						className="form-control"

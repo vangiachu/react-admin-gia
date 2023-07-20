@@ -2,7 +2,7 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import Wrapper from '../../components/Wrapper';
 import axios from 'axios';
 import { Role } from '../../models/role';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 const UserEdit = (props: any) => {
 	const [first_name, setFirstName] = useState('');
@@ -11,6 +11,7 @@ const UserEdit = (props: any) => {
 	const [role_id, setRoleId] = useState('');
 	const [roles, setRoles] = useState([]);
 	const [navigate, setNavigate] = useState(false);
+	const { id } = useParams();
 
 	useEffect(() => {
 		(async () => {
@@ -18,7 +19,7 @@ const UserEdit = (props: any) => {
 
 			setRoles(response.data);
 
-			const { data } = await axios.get(`users/${props.match.params.id}`);
+			const { data } = await axios.get(`users/${id}`);
 
 			setFirstName(data.first_name);
 			setLastName(data.last_name);
@@ -30,7 +31,7 @@ const UserEdit = (props: any) => {
 	const submit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		await axios.put(`users/${props.match.params.id}`, {
+		await axios.put(`users/${id}`, {
 			first_name,
 			last_name,
 			email,
@@ -74,7 +75,7 @@ const UserEdit = (props: any) => {
 					/>
 				</div>
 
-				<div className='mb-3'>
+				<div className="mb-3">
 					<label>Role</label>
 					<select
 						className="form-control"
